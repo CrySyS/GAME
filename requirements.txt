@@ -1,0 +1,8 @@
+lief
+matplotlib
+networkx
+numpy
+pandas
+py-tlsh
+scikit-learn
+seaborn
