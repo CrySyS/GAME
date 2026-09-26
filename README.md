@@ -16,6 +16,9 @@
 
 # Measurements
 
+- you can download the measurement artifacts from: https://cloud.crysys.hu/s/e5aH4qeX38oA4sc
+
+
 ## Models
 - Simbiota with similarity threshold 40
 - Simbiota-ML with Random Forest, Simbiota-ML with Logistic Regression (w/ hyperparams by Niki's paper) 
