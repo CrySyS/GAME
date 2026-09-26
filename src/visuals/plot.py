@@ -93,7 +93,7 @@ def plot_target_bytes_distribution(samples: int = 1000):
     
     
 def plot_sigmoid_norm_tlsh_diff():
-    print(f"In 0-40 range, sigmoid_norm_tlsh_diff(0)={sigmoid_norm_tlsh_diff(0)}, sigmoid_norm_tlsh_diff(40)={sigmoid_norm_tlsh_diff(40)}")
+    print(f"sigmoid_norm_tlsh_diff(0)={sigmoid_norm_tlsh_diff(0)}, sigmoid_norm_tlsh_diff(40)={sigmoid_norm_tlsh_diff(40)}")
     xs = np.linspace(0, 250, 100) 
     ys = np.vectorize(sigmoid_norm_tlsh_diff)(xs)
     plt.figure(figsize=(6,4))
@@ -112,6 +112,7 @@ def plot_sigmoid_norm_tlsh_diff():
     
 
 def plot_sigmoid_norm_size_increase():
+    print(f"sigmoid_norm_size_increase(0)={sigmoid_norm_size_increase(0)}, sigmoid_norm_size_increase(1)={sigmoid_norm_size_increase(1)}")
     xs = np.linspace(0, 1.0, 100) 
     ys = np.vectorize(sigmoid_norm_size_increase)(xs)
     plt.figure(figsize=(6,4))
@@ -127,6 +128,7 @@ def plot_sigmoid_norm_size_increase():
     
     
 def plot_sigmoid_norm_entropy_diff():
+    print(f"sigmoid_norm_entropy_diff(0)={sigmoid_norm_entropy_diff(0)}, sigmoid_norm_entropy_diff(1)={sigmoid_norm_entropy_diff(1)}")
     xs = np.linspace(0, 2, 100) 
     ys = np.vectorize(sigmoid_norm_entropy_diff)(xs)
     plt.figure(figsize=(6,4))

@@ -24,7 +24,7 @@ _WORKER_CONTEXT = {
     "original_entropy": None,
     "model": None,
     "fitness_weights": None,
-    "anomaly_weights": None,
+    "type_penalties": None,
     "detected_penalty": None,
     "repetition": None
 }
@@ -36,7 +36,7 @@ def _initialize_fitness_worker(
     original_entropy: float,
     model,
     fitness_weights: dict,
-    anomaly_weights: dict,
+    type_penalties: dict,
     detected_penalty: float,
     repetition: int
 ):
@@ -50,7 +50,7 @@ def _initialize_fitness_worker(
     _WORKER_CONTEXT["original_entropy"] = original_entropy
     _WORKER_CONTEXT["model"] = model
     _WORKER_CONTEXT["fitness_weights"] = fitness_weights
-    _WORKER_CONTEXT["anomaly_weights"] = anomaly_weights
+    _WORKER_CONTEXT["type_penalties"] = type_penalties
     _WORKER_CONTEXT["detected_penalty"] = detected_penalty
     _WORKER_CONTEXT["repetition"] = repetition
 
@@ -76,7 +76,7 @@ def _evaluate_strategy_worker(strategy):
             + norm_size_increase * _WORKER_CONTEXT["fitness_weights"]['size_increase']
             + norm_entropy_diff * _WORKER_CONTEXT["fitness_weights"]['entropy_diff'])
         
-        weighted_fitness *= _WORKER_CONTEXT["anomaly_weights"].get(strategy.elf_modifier_names()[0])
+        weighted_fitness *= _WORKER_CONTEXT["type_penalties"].get(strategy.elf_modifier_names()[0])
 
         if _WORKER_CONTEXT["model"].predict([modified_tlsh])[0] == 1:  # if detected as malware
             weighted_fitness *= _WORKER_CONTEXT['detected_penalty']
@@ -115,7 +115,7 @@ class GeneticAlgorithm:
                 self.original_entropy,
                 self.model,
                 self.config['FITNESS_WEIGHTS'],
-                self.config['ANOMALY_WEIGHTS'],
+                self.config['TYPE_PENALTIES'],
                 self.config['DETECTED_PENALTY'],
                 self.config['REPETITION']
             ),
@@ -215,7 +215,6 @@ if __name__ == "__main__":
     from config import OUTPUT_DIR, MALWARE_DIR, BASE_CONFIG
     import pickle
 
-
     parser = argparse.ArgumentParser(description="Run GAME with a trained detector and a malware sample.")
     parser.add_argument(
         "--model-path",
@@ -229,13 +228,11 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-
     model_path = args.model_path.expanduser()
 
     with open(model_path, "rb") as f:
         detector = pickle.load(f)
     logger.debug(f"Loaded model from {model_path}.")
-
 
     if args.malware_id:
         mw_id = args.malware_id
@@ -246,18 +243,10 @@ if __name__ == "__main__":
     logger.info(f"Selected malware sample: {mw_id} for GAME execution.")
     ga = GeneticAlgorithm(mw_file, model=detector, config=BASE_CONFIG)
     best_strategy = ga.run()
-
-    # Save best strategy to JSON
-    # strategy_path = OUTPUT_DIR / str(ga.model) / f"{mw_id}.json"
-    # strategy_path.parent.mkdir(parents=True, exist_ok=True)
-    # strategy_json = best_strategy.to_dict()
-    # strategy_json['detector'] = detector.to_dict()
-    # with open(strategy_path, 'w') as f:
-    #     json.dump(strategy_json, f, indent=2)
-    # logger.info(f"Best strategy saved to {strategy_path}")
     
     plot_history(ga, mw_id) 
     evaluator = StrategyEvaluator(input_file=mw_file, model=detector, strategy=best_strategy)
-    evaluator.evaluate_multiple_runs(num_runs=12)
-        
+    result = evaluator.evaluate_multiple_runs(num_runs=12)
+    for run_result in result:
+        logger.info(run_result)
         

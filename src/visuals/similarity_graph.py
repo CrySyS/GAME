@@ -4,8 +4,6 @@ Each input CSV produces one GEXF graph. The graph nodes are one selected
 adversarial sample and its original malware sample per malware. Edges connect
 samples with TLSH distance at most 40.
 """
-
-
 import networkx as nx
 import pandas as pd
 import seaborn as sns
@@ -83,10 +81,8 @@ def build_graphs() -> None:
 		input_path = OUTPUT_DIR / f"samples_{ARCH}_{model}.csv"
 		df = pd.read_csv(input_path)
 		graph = build_similarity_graph(df)
-		output_path = OUTPUT_DIR / f"similarity_{ARCH}_{model}.gexf"
-		nx.write_gexf(graph, output_path)
-		print(f"{output_path}: {graph.number_of_nodes()} nodes, {graph.number_of_edges()} edges")
-
+		nx.write_gexf(graph, OUTPUT_DIR / f"similarity_{ARCH}_{model}.gexf")
+		print(f"{model}: {graph.number_of_nodes()} nodes, {graph.number_of_edges()} edges")
 
 
 if __name__ == "__main__":

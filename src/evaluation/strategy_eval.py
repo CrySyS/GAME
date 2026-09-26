@@ -41,7 +41,7 @@ class StrategyEvaluator:
             + norm_size_increase * BASE_CONFIG["FITNESS_WEIGHTS"]['size_increase']
             + norm_entropy_diff * BASE_CONFIG["FITNESS_WEIGHTS"]['entropy_diff'])
                 
-        weighted_fitness *= BASE_CONFIG["ANOMALY_WEIGHTS"].get(self.strategy.elf_modifier_names()[0])
+        weighted_fitness *= BASE_CONFIG["TYPE_PENALTIES"].get(self.strategy.elf_modifier_names()[0])
         
         if metrics['detected'] == "YES":  # if detected as malware
             weighted_fitness *= BASE_CONFIG['DETECTED_PENALTY']

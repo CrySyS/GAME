@@ -7,8 +7,8 @@ import os
 PROJECT_ROOT = Path(__file__).parent.parent
 DATA_DIR = PROJECT_ROOT / "data"
 ARCH = "arm"
-MALWARE_DIR = Path(f"/Users/jozsefsandor/datasets/ml-sample-pack-subset-1K/malware/{ARCH}")
-BENIGN_DIR = Path(f"/Users/jozsefsandor/datasets/ml-sample-pack-extra-1K/benign/{ARCH}")
+MALWARE_DIR = PROJECT_ROOT / f"binaries/malware/{ARCH}"
+BENIGN_DIR = PROJECT_ROOT / f"binaries/benign/{ARCH}"
 
 
 BASE_CONFIG = {
@@ -29,7 +29,7 @@ BASE_CONFIG = {
         "size_increase": 0.6,
         "entropy_diff": 0.1
     },
-    "ANOMALY_WEIGHTS":
+    "TYPE_PENALTIES":
     {
         "Appender": 0.8,
         "PaddingOverwriter": 0.9,
