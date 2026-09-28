@@ -8,15 +8,16 @@
 
 # Run GAME
 
-- download source binaries from: https://cloud.crysys.hu/s/GBkzsSpkJi7dkfR
+- download the 4K source binaries from: https://cloud.crysys.hu/s/GBkzsSpkJi7dkfR
 - unzip it to project root folder
 - possibly set hyperparameter values in src/config.py
-- python3 src/genetic/ga.py
+- python3 src/genetic/ga.py --model-path path_to_model --malware-id name_of_malware
 
 
 # Measurements
 
-- you can download the measurement artifacts from: https://cloud.crysys.hu/s/e5aH4qeX38oA4sc
+- data folder contains the feature vectors of the 40K samples as csv files, which was used for training the models, but you can also download the raw binaries from: https://cloud.crysys.hu/s/KYJ8bZfaKRce6sx
+- you can reproduce the measurements, but you can also download the measurement artifacts from: https://cloud.crysys.hu/s/e5aH4qeX38oA4sc
 
 
 ## Models
