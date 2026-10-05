@@ -2,9 +2,9 @@
 
 This repository accompanies our paper, *"GAME: Automated Generation of Adversarial Malware Samples with a Genetic Algorithm"*, submitted to [Acta Cybernetica](https://cyber.bibl.u-szeged.hu/index.php/actcybern/).
 
-# Install GAME
+# Install GAME (Genetic Algorithm for Malware Evasion)
 
-- git clone [git@git.crysys.hu:jozsef.sandor/game.git](https://github.com/CrySyS/GAME.git)
+- clone the repository
 - python3 -m venv .venv
 - source .venv/bin/activate
 - pip install -r requirements.txt
@@ -26,7 +26,7 @@ This repository accompanies our paper, *"GAME: Automated Generation of Adversari
 
 ## Models
 - Simbiota with similarity threshold 40
-- Simbiota-ML with Random Forest, Simbiota-ML with Logistic Regression (w/ hyperparams by Niki's paper) 
+- Simbiota-ML with Random Forest, Simbiota-ML with Logistic Regression
 - ARM, MIPS 
 
 ## Data set:
