@@ -1,3 +1,7 @@
+## Publication
+
+This repository accompanies our paper, *"GAME: Automated Generation of Adversarial Malware Samples with a Genetic Algorithm"*, submitted to [Acta Cybernetica](https://cyber.bibl.u-szeged.hu/index.php/actcybern/).
+
 # Install GAME
 
 - git clone [git@git.crysys.hu:jozsef.sandor/game.git](https://github.com/CrySyS/GAME.git)
@@ -89,7 +93,6 @@
 # TODO
 
 - write unit tests for the created classes and functions!
-- try igraph instead of networkx
 - LIEF related warning: Can't access content of segment LOAD:0xaddress
 e.g., b7ed95be1ac32bd82c04fe73f8b390ab72756a63a7f795939a3594327f4e1c80; e28732ea9be75ca2617a045d9ab6980813cb5c9df831977299d94e5486b3772a
 - check size-increase outliers
